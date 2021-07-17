@@ -4,6 +4,8 @@
 FROM ubuntu:18.04
 MAINTAINER Gokulnath Avanashilingam <Gokulnath.Avanashilingam@in.bosch.com>
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Keep the dependency list as short as reasonable
 RUN apt-get update && \
 	apt-get -y upgrade && \
