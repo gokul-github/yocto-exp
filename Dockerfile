@@ -14,10 +14,8 @@ RUN apt-get update && \
 		chrpath socat cpio python3 python3-pip python3-pexpect \
 		xz-utils debianutils iputils-ping python3-git \
 		python3-jinja2 libegl1-mesa libsdl1.2-dev \
-		pylint3 xterm python3-subunit mesa-common-dev 
-
-# Set up locales
-RUN apt-get -y install locales apt-utils sudo && dpkg-reconfigure locales && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+		pylint3 xterm python3-subunit mesa-common-dev \
+		locales apt-utils sudo
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
@@ -29,10 +27,13 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Replace dash with bash
 RUN rm /bin/sh && ln -s bash /bin/sh
 
+# Set softlink for python from python3
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
 # User management
 # ===== create user/setup environment =====
 # Replace 1000 with your user/group id
-RUN export uid=108 gid=113 user=azuredevel && \
+RUN export uid=1000 gid=1000 user=azuredevel && \
     mkdir -p /home/${user} && \
     echo "${user}:x:${uid}:${gid}:${user},,,:/home/${user}:/bin/bash" >> /etc/passwd && \
     echo "${user}:x:${uid}:" >> /etc/group && \
@@ -50,5 +51,3 @@ ENV HOME /home/azuredevel
 ENV USER azuredevel
 USER azuredevel
 WORKDIR /home/azuredevel
-
-
