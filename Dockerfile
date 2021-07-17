@@ -12,7 +12,7 @@ RUN apt-get update && \
 		chrpath socat cpio python3 python3-pip python3-pexpect \
 		xz-utils debianutils iputils-ping python3-git \
 		python3-jinja2 libegl1-mesa libsdl1.2-dev \
-		pylint3 xterm python3-subunit mesa-common-dev \
+		pylint3 xterm python3-subunit mesa-common-dev 
 
 # Set up locales
 RUN apt-get -y install locales apt-utils sudo && dpkg-reconfigure locales && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
