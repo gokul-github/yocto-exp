@@ -15,7 +15,7 @@ RUN apt-get update && \
 		xz-utils debianutils iputils-ping python3-git \
 		python3-jinja2 libegl1-mesa libsdl1.2-dev \
 		pylint3 xterm python3-subunit mesa-common-dev \
-		locales apt-utils sudo
+		locales apt-utils sudo rsync
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
@@ -41,6 +41,7 @@ RUN export uid=1000 gid=1000 user=azuredevel && \
     chmod 0440 /etc/sudoers.d/${user} && \
     chown ${uid}:${gid} -R /home/${user}
 
+#Git configuration
 RUN git config --global color.ui false
 
 # Install repo
