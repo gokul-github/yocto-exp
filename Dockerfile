@@ -44,9 +44,9 @@ RUN git config --global color.ui false
 ADD https://commondatastorage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
 RUN chmod 755 /usr/local/bin/*
 
-ENV HOME /home/${user}
-ENV USER ${user}
-USER ${user}
-WORKDIR /home/${user}
+ENV HOME /home/azuredevel
+ENV USER azuredevel
+USER azuredevel
+WORKDIR /home/azuredevel
 
 
